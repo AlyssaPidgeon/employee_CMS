@@ -21,6 +21,7 @@ CREATE TABLE role (
 
 --role is one to many employee
 -- employee is one to many manager
+--manager_id: INT to hold reference to another employee that is the manager of the current employee (null if the employee has no manager)
 
 CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
