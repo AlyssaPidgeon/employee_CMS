@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//connect to DB:
+//connect to DB using mysql2:
 const db = mysql.createConnection(
   {
     host: "localhost",
@@ -18,6 +18,18 @@ const db = mysql.createConnection(
   },
   console.log("Connected to the employee_db database.")
 );
+
+//query -
+
+connection.execute(
+  "SELECT * FROM 'department' WHERE 'name' = ? AND 'id' = ?",
+  function (err, results, fields) {
+    console.log(results);
+    console.log(fields);
+  }
+);
+
+con.promise().query("Select 1");
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
