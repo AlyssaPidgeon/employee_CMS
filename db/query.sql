@@ -1,12 +1,15 @@
 -- join department name into role table: department_id is relationship between both tables: 
-SELECT role.id, role.title, role.salary, department.name
-FROM role
-JOIN name ON role.department_id = department.department_id;
+SELECT roles.id, roles.title, roles.salary, department.name
+FROM roles
+JOIN names ON roles.department_id = department.department_id;
 
 -- join title, department, salary and manager to employee table: 
 
-SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name
-FROM employee
-RIGHT JOIN title ON employee.role_id = role.role_id
-RIGHT JOIN role ON employee.role_id = role.role_id
-RIGHT JOIN name ON employee.department_id = department.department_id;
+SELECT employees.id, employees.first_name, employees.last_name, roles.title, roles.salary, department.names
+FROM employees
+RIGHT JOIN title ON employees.roles_id = roles.roles_id
+RIGHT JOIN salary ON employees.roles_id = roles.roles_id
+RIGHT JOIN names ON employees.department_id = department.department_id;
+
+
+UPDATE employees SET NAME = "" WHERE id = "";
