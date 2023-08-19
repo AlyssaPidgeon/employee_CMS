@@ -1,7 +1,7 @@
 //mysql:
 const connection = require("./connect.js");
 
-//DB Class constructor with findallemployees method that retuns query for returning employee table:
+//DB Class constructor
 
 class DB {
   constructor(connection) {

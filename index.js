@@ -30,15 +30,15 @@ function viewDepartment() {
     })
     .then(() => selectOption());
 }
-//Add - addNewDepartment as reference function:
-//let name = ?;
+
 function addNewDepartment() {
   prompt([
     { type: "input", message: "Enter department name", name: "department" },
-  ]).then((department) => {
-    db.addDepartment(department);
-  });
-  // .then(() => selectOption());
+  ])
+    .then((department) => {
+      db.addDepartment(department);
+    })
+    .then(() => selectOption());
 }
 
 function addNewRole() {
