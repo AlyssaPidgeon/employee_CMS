@@ -41,6 +41,44 @@ function addNewDepartment() {
   // .then(() => selectOption());
 }
 
+function addNewRole() {
+  prompt([
+    {
+      type: "input",
+      message: "Enter the new role to be added",
+      name: "new_role",
+    },
+  ]).then((new_role) => {
+    db.addRole(new_role);
+  });
+}
+
+// function addNewEmployee() {
+//   prompt([
+//     {
+//       type: "input",
+//       message: "Enter the new employee's first name",
+//       name: "first_name",
+//     },
+//     {
+//       type: "input",
+//       message: "Enter the new employee's surname",
+//       name: "surname",
+//     },
+//     {
+//       type: "input",
+//       message: "Enter the employee's role ",
+//       name: "new_role",
+//     },
+//     {
+//       type: "input",
+//       message: "Enter the employee's manager",
+//       name: "manager",
+//     },
+//     ]).then((first_name, surname, new_role, manager) => {
+//       db.addEmployee(first_name, surname, new_role, manager);
+//     }
+// }
 function updateEmployee() {}
 
 function selectOption() {
@@ -95,10 +133,10 @@ function selectOption() {
         addNewDepartment();
         break;
       case "ADD_ROLE":
-        addRole();
+        addNewRole();
         break;
       case "ADD_EMPLOYEE":
-        addEmployee();
+        addNewEmployee();
         break;
       case "UPDATE_EMPLOYEE":
         updateEmployee();

@@ -28,7 +28,7 @@ class DB {
     return this.connection
       .promise()
       .query(
-        "SELECT roles.title, department.names FROM roles INNER JOIN department ON roles.department_id = department.department_id"
+        "SELECT roles.id, roles.title, roles.salary, department.names AS department FROM roles LEFT JOIN department ON roles.department_id = department_id"
       );
   }
 
@@ -37,6 +37,16 @@ class DB {
     return this.connection
       .promise()
       .query("INSERT INTO department SET ?", department);
+  }
+  //name and salary-roles db, dedpartment = department db
+  addRole(roles) {
+    return this.connection.promise().query("INSERT INTO roles SET ?", roles);
+  }
+
+  addEmployee(employees) {
+    return this.connection
+      .promise()
+      .query("INSERT INTO employees SET ?", employees);
   }
 }
 
