@@ -14,19 +14,29 @@ RIGHT JOIN names ON employees.department_id = department.department_id;
 
 UPDATE employees SET NAME = "" WHERE id = "";
 
-SELECT employees.id, employees.first_name, employees.last_name, roles.salary AS salary
-FROM employees, roles
-LEFT JOIN salary ON employees.roles_id = roles_id;
+SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary, department.names AS department
+FROM employees
+LEFT JOIN roles ON employees.roles_id = roles_id
+LEFT JOIN department ON employees.roles_id = roles_id;
 
 
 
 
 SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary
-FROM employees, roles 
-LEFT JOIN roles ON employees.roles_id = roles_id;
+FROM employees
+LEFT JOIN roles ON employees.roles_id = roles_id
 
 
 
+
+
+
+
+
+
+LEFT JOIN department ON employees.department_id = department_id;
+
+ department.names AS department
 
 
 LEFT JOIN title ON employees.roles_id = roles_id 

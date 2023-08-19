@@ -14,15 +14,13 @@ class DB {
     return this.connection
       .promise()
       .query(
-        "SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary, department.names AS department FROM employees, roles, department LEFT JOIN title ON employees.roles_id = roles.roles_id LEFT JOIN salary ON employees.roles_id = roles.roles_id RIGHT JOIN names ON employees.department_id = department.department_id;"
+        "SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary, department.names AS department FROM employees LEFT JOIN roles ON employees.roles_id = roles_id LEFT JOIN department ON employees.roles_id = roles_id;"
       );
   }
 
   findAllDepartments() {
     return this.connection.promise().query("SELECT * FROM department");
   }
-
-  //roles table needs department column from department table (?join)
 
   findAllRoles() {
     return this.connection
