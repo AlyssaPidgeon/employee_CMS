@@ -11,6 +11,16 @@ function viewEmployees() {
     .then(() => selectOption());
 }
 
+function viewByManagers() {
+  db.viewManagers()
+    .then(([rows]) => {
+      let employees = rows;
+      console.log("\n");
+      console.table(employees);
+    })
+    .then(() => selectOption());
+}
+
 function viewRoles() {
   db.findAllRoles()
     .then(([rows]) => {
@@ -46,39 +56,40 @@ function addNewRole() {
     {
       type: "input",
       message: "Enter the new role to be added",
-      name: "new_role",
+      name: "roles",
     },
-  ]).then((new_role) => {
-    db.addRole(new_role);
+  ]).then((roles) => {
+    db.addRole(roles);
   });
 }
 
-// function addNewEmployee() {
-//   prompt([
-//     {
-//       type: "input",
-//       message: "Enter the new employee's first name",
-//       name: "first_name",
-//     },
-//     {
-//       type: "input",
-//       message: "Enter the new employee's surname",
-//       name: "surname",
-//     },
-//     {
-//       type: "input",
-//       message: "Enter the employee's role ",
-//       name: "new_role",
-//     },
-//     {
-//       type: "input",
-//       message: "Enter the employee's manager",
-//       name: "manager",
-//     },
-//     ]).then((first_name, surname, new_role, manager) => {
-//       db.addEmployee(first_name, surname, new_role, manager);
-//     }
-// }
+function addNewEmployee() {
+  prompt([
+    {
+      type: "input",
+      message: "Enter the new employee's first name",
+      name: "first_name",
+    },
+    {
+      type: "input",
+      message: "Enter the new employee's surname",
+      name: "surname",
+    },
+    {
+      type: "input",
+      message: "Enter the employee's role ",
+      name: "new_role",
+    },
+    {
+      type: "input",
+      message: "Enter the employee's manager",
+      name: "manager",
+    },
+  ]).then((first_name, surname, new_role, manager) => {
+    db.addEmployee(first_name, surname, new_role, manager);
+  });
+}
+
 function updateEmployee() {}
 
 function selectOption() {
@@ -116,6 +127,10 @@ function selectOption() {
           name: "Update an employee role",
           value: "UPDATE_EMPLOYEE",
         },
+        {
+          name: "View employees by managers",
+          value: "VIEW_EMPLOYEE",
+        },
       ],
     },
   ]).then((answer) => {
@@ -140,6 +155,9 @@ function selectOption() {
         break;
       case "UPDATE_EMPLOYEE":
         updateEmployee();
+        break;
+      case "VIEW_EMPLOYEE":
+        viewByManagers();
         break;
     }
   });

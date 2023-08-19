@@ -14,7 +14,7 @@ class DB {
     return this.connection
       .promise()
       .query(
-        "SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary, department.names AS department FROM employees RIGHT JOIN title ON employees.roles_id = roles.roles_id RIGHT JOIN salary ON employees.roles_id = roles.roles_id RIGHT JOIN names ON employees.department_id = department.department_id;"
+        "SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary, department.names AS department FROM employees, roles, department LEFT JOIN title ON employees.roles_id = roles.roles_id LEFT JOIN salary ON employees.roles_id = roles.roles_id RIGHT JOIN names ON employees.department_id = department.department_id;"
       );
   }
 
@@ -47,6 +47,13 @@ class DB {
     return this.connection
       .promise()
       .query("INSERT INTO employees SET ?", employees);
+  }
+  viewManagers() {
+    return this.connection
+      .promise()
+      .query(
+        "SELECT employees.manager_id, employees.first_name, employees.last_name FROM employees WHERE manager_id IS NOT NULL;"
+      );
   }
 }
 
