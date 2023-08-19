@@ -14,7 +14,7 @@ class DB {
     return this.connection
       .promise()
       .query(
-        "SELECT employees.id, employees.first_name, employees.last_name, roles.title, roles.salary, department.names FROM employees RIGHT JOIN title ON employees.roles_id = roles.roles_id RIGHT JOIN salary ON employees.roles_id = roles.roles_id RIGHT JOIN names ON employees.department_id = department.department_id;"
+        "SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary, department.names AS department FROM employees RIGHT JOIN title ON employees.roles_id = roles.roles_id RIGHT JOIN salary ON employees.roles_id = roles.roles_id RIGHT JOIN names ON employees.department_id = department.department_id;"
       );
   }
 

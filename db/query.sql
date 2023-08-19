@@ -5,7 +5,7 @@ JOIN names ON roles.department_id = department.department_id;
 
 -- join title, department, salary and manager to employee table: 
 
-SELECT employees.id, employees.first_name, employees.last_name, roles.title, roles.salary, department.names
+SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary, department.names AS department
 FROM employees
 RIGHT JOIN title ON employees.roles_id = roles.roles_id
 RIGHT JOIN salary ON employees.roles_id = roles.roles_id
