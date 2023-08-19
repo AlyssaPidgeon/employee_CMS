@@ -18,9 +18,16 @@ SELECT employees.id, employees.first_name, employees.last_name, roles.salary AS 
 FROM employees, roles
 LEFT JOIN salary ON employees.roles_id = roles_id;
 
-SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary, department.names AS departments 
-FROM employees, roles, department 
-LEFT JOIN departments ON employees.department_id = department_id;
+
+
+
+SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, roles.salary AS salary
+FROM employees, roles 
+LEFT JOIN roles ON employees.roles_id = roles_id;
+
+
+
+
 
 LEFT JOIN title ON employees.roles_id = roles_id 
 LEFT JOIN salary ON employees.roles_id = roles.roles_id 
